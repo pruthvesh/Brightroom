@@ -95,7 +95,7 @@ public final class CropView: UIView, UIScrollViewDelegate {
   /**
    a guide view that displayed on guide container view.
    */
-  private lazy var guideView = _InteractiveCropGuideView(
+  lazy var guideView = _InteractiveCropGuideView(
     containerView: self,
     imageView: self.imageView,
     insetOfGuideFlexibility: contentInset

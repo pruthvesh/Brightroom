@@ -74,7 +74,7 @@ public final class PhotosCropViewController: UIViewController {
   
   private let store: UIStateStore<State, Never>
   
-  private let cropView: CropView
+  public let cropView: CropView
   private var aspectRatioControl: PhotosCropAspectRatioControl?
   
   public let editingStack: EditingStack
@@ -156,8 +156,13 @@ public final class PhotosCropViewController: UIViewController {
     view.clipsToBounds = true
     
     aspectRatioButton&>.do {
-      $0.setImage(UIImage(named: "aspectratio", in: bundle, compatibleWith: nil), for: .normal)
-      $0.tintColor = .systemGray
+      if #available(iOSApplicationExtension 13.0, *) {
+        $0.setImage(UIImage(systemName: "aspectratio"), for: .normal)
+        $0.tintColor = .white
+      } else {
+        $0.setImage(UIImage(named: "aspectratio", in: bundle, compatibleWith: nil), for: .normal)
+        $0.tintColor = .systemGray
+      }
       $0.addTarget(self, action: #selector(handleAspectRatioButton), for: .touchUpInside)
     }
     
@@ -171,8 +176,13 @@ public final class PhotosCropViewController: UIViewController {
     }
     
     rotateButton&>.do {
-      $0.setImage(UIImage(named: "rotate", in: bundle, compatibleWith: nil), for: .normal)
-      $0.tintColor = .systemGray
+      if #available(iOSApplicationExtension 13.0, *) {
+        $0.setImage(UIImage(systemName: "rotate.left"), for: .normal)
+        $0.tintColor = .white
+      } else {
+        $0.setImage(UIImage(named: "rotate", in: bundle, compatibleWith: nil), for: .normal)
+        $0.tintColor = .systemGray
+      }
       $0.addTarget(self, action: #selector(handleRotateButton), for: .touchUpInside)
     }
     

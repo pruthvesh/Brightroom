@@ -233,7 +233,7 @@ public struct EditingCrop: Equatable {
     )
   }
 
-  private static func fittingRect(
+  static func fittingRect(
     rect: CGRect,
     in imageSize: CGSize,
     respectingAspectRatio: PixelAspectRatio?
